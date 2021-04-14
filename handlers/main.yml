@@ -1,0 +1,25 @@
+---
+- name: Iptables flush nat table
+  iptables:
+    table: nat
+    flush: yes
+  listen: Reload iptables rules and restart Docker
+
+- name: Iptables flush filter table
+  iptables:
+    table: filter
+    flush: yes
+  listen: Reload iptables rules and restart Docker
+
+- name: Restart netfilter-persistent service
+  systemd:
+    name: netfilter-persistent
+    state: restarted
+  listen: Reload iptables rules and restart Docker
+
+- name: Restart docker service
+  systemd:
+    name: docker
+    state: restarted
+  when: restart_docker | bool
+  listen: Reload iptables rules and restart Docker

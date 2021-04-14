@@ -1,0 +1,25 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: iptables_rules
+  author: dmotte
+  description: Ansible role to define persistent iptables rules
+  license: MIT
+  min_ansible_version: 2.9
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags:
+    - network
+    - rules
+    - ipv4
+    - ipv6
+    - iptables
+    - persistent
+    - ip
+    - netfilter

@@ -1,0 +1,40 @@
+---
+- name: Execute apt update only if the last one is more than 1 hour ago
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Do not save current IPv4 rules to /etc/iptables/rules.v4
+  debconf:
+    name: iptables-persistent
+    question: iptables-persistent/autosave_v4
+    vtype: boolean
+    value: "false"
+
+- name: Do not save current IPv6 rules to /etc/iptables/rules.v6
+  debconf:
+    name: iptables-persistent
+    question: iptables-persistent/autosave_v6
+    vtype: boolean
+    value: "false"
+
+- name: Ensure the iptables-persistent apt package is installed (and at the latest version)
+  apt:
+    name: iptables-persistent
+    state: latest
+
+- name: Create the rules.v4 file
+  template:
+    src: rules_v4.j2
+    dest: /etc/iptables/rules.v4
+    mode: "644"
+  when: rules_v4 is defined
+  notify: Reload iptables rules and restart Docker
+
+- name: Create the rules.v6 file
+  template:
+    src: rules_v6.j2
+    dest: /etc/iptables/rules.v6
+    mode: "644"
+  when: rules_v6 is defined
+  notify: Reload iptables rules and restart Docker
