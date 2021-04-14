@@ -18,10 +18,9 @@
     vtype: boolean
     value: "false"
 
-- name: Ensure the iptables-persistent apt package is installed (and at the latest version)
+- name: Ensure the iptables-persistent apt package is installed
   apt:
     name: iptables-persistent
-    state: latest
 
 - name: Create the rules.v4 file
   template:
