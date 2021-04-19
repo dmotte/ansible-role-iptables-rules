@@ -26,7 +26,7 @@ Variable         | Description
 ---------------- | ---
 `rules_v4`       | If set, content of the `/etc/iptables/rules.v4` file. If not set, that file won't be created
 `rules_v6`       | If set, content of the `/etc/iptables/rules.v6` file. If not set, that file won't be created
-`restart_docker` | If true, restarts the **Docker daemon** after restarting *iptables-persistent*
+`restart_docker` | If true (`restart_docker: yes`), restarts the **Docker daemon** after restarting *iptables-persistent*
 
 ## Development
 

@@ -12,13 +12,13 @@
   listen: Reload iptables rules and restart Docker
 
 - name: Restart netfilter-persistent service
-  systemd:
+  service:
     name: netfilter-persistent
     state: restarted
   listen: Reload iptables rules and restart Docker
 
 - name: Restart docker service
-  systemd:
+  service:
     name: docker
     state: restarted
   when: restart_docker | bool
