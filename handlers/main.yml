@@ -1,25 +1,90 @@
 ---
-- name: Iptables flush nat table
-  iptables:
-    table: nat
-    flush: yes
-  listen: Reload iptables rules and restart Docker
+- name: Iptables IPv4 reset
+  block:
+    - name: Set the iptables policy for the filter:INPUT chain to ACCEPT
+      iptables:
+        table: filter
+        chain: INPUT
+        policy: ACCEPT
+      listen: Reload iptables rules and restart Docker
 
-- name: Iptables flush filter table
-  iptables:
-    table: filter
-    flush: yes
-  listen: Reload iptables rules and restart Docker
+    - name: Set the iptables policy for the filter:FORWARD chain to ACCEPT
+      iptables:
+        table: filter
+        chain: FORWARD
+        policy: ACCEPT
+      listen: Reload iptables rules and restart Docker
 
-- name: Restart netfilter-persistent service
-  service:
-    name: netfilter-persistent
-    state: restarted
-  listen: Reload iptables rules and restart Docker
+    - name: Set the iptables policy for the filter:OUTPUT chain to ACCEPT
+      iptables:
+        table: filter
+        chain: OUTPUT
+        policy: ACCEPT
+      listen: Reload iptables rules and restart Docker
 
-- name: Restart docker service
-  service:
-    name: docker
-    state: restarted
-  when: restart_docker | bool
-  listen: Reload iptables rules and restart Docker
+    - name: Iptables flush nat table
+      iptables:
+        table: nat
+        flush: yes
+      listen: Reload iptables rules and restart Docker
+
+    - name: Iptables flush filter table
+      iptables:
+        table: filter
+        flush: yes
+      listen: Reload iptables rules and restart Docker
+
+- name: Iptables IPv6 reset
+  block:
+    - name: Set the iptables IPv6 policy for the filter:INPUT chain to ACCEPT
+      iptables:
+        ip_version: ipv6
+        table: filter
+        chain: INPUT
+        policy: ACCEPT
+      listen: Reload iptables rules and restart Docker
+
+    - name: Set the iptables IPv6 policy for the filter:FORWARD chain to ACCEPT
+      iptables:
+        ip_version: ipv6
+        table: filter
+        chain: FORWARD
+        policy: ACCEPT
+      listen: Reload iptables rules and restart Docker
+
+    - name: Set the iptables IPv6 policy for the filter:OUTPUT chain to ACCEPT
+      iptables:
+        ip_version: ipv6
+        table: filter
+        chain: OUTPUT
+        policy: ACCEPT
+      listen: Reload iptables rules and restart Docker
+
+    - name: Iptables flush IPv6 nat table
+      iptables:
+        ip_version: ipv6
+        table: nat
+        flush: yes
+      listen: Reload iptables rules and restart Docker
+
+    - name: Iptables flush IPv6 filter table
+      iptables:
+        ip_version: ipv6
+        table: filter
+        flush: yes
+      listen: Reload iptables rules and restart Docker
+
+- name: Restart systemctl services
+  block:
+    - name: Restart netfilter-persistent service
+      service:
+        name: netfilter-persistent
+        state: restarted
+      listen: Reload iptables rules and restart Docker
+
+    - name: Restart docker service
+      service:
+        name: docker
+        state: restarted
+      when: restart_docker | bool
+      listen: Reload iptables rules and restart Docker
