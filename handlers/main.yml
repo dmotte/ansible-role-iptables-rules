@@ -84,6 +84,7 @@
 
     - name: Restart other services
       service:
-        name: "{{ restart_services }}"
+        name: "{{ item }}"
         state: restarted
+      loop: "{{ restart_services }}"
       listen: Reload iptables rules and restart services
