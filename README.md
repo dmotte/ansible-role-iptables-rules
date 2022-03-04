@@ -8,7 +8,7 @@ Ansible role to define **persistent iptables rules**.
 ## Usage
 
 1. Install this role using the `ansible-galaxy` CLI tool
-2. You can then include it into the `tasks` section of your *Ansible Playbook* like this:
+2. You can then include it into the `tasks` section of your _Ansible Playbook_ like this:
 
    ```yaml
    - name: Include the dmotte.iptables_rules role
@@ -16,17 +16,18 @@ Ansible role to define **persistent iptables rules**.
      vars:
        ansible_become: yes
        rules_v4: "{{ lookup('file', 'rules.v4') }}"
+       restart_services: [docker]
    ```
 
 > **Note**: this role must be run as root (`ansible_become: yes`).
 
 ### Role variables
 
-Variable         | Description
----------------- | ---
-`rules_v4`       | If set, content of the `/etc/iptables/rules.v4` file. If not set, that file won't be created
-`rules_v6`       | If set, content of the `/etc/iptables/rules.v6` file. If not set, that file won't be created
-`restart_docker` | If true (`restart_docker: yes`), restarts the **Docker daemon** after restarting *iptables-persistent*
+| Variable           | Description                                                                                  |
+| ------------------ | -------------------------------------------------------------------------------------------- |
+| `rules_v4`         | If set, content of the `/etc/iptables/rules.v4` file. If not set, that file won't be created |
+| `rules_v6`         | If set, content of the `/etc/iptables/rules.v6` file. If not set, that file won't be created |
+| `restart_services` | List of services to be restarted after restarting _iptables-persistent_ (default: `[]`)      |
 
 ## Development
 

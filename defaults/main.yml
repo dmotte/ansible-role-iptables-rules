@@ -1,2 +1,2 @@
 ---
-restart_docker: no
+restart_services: []

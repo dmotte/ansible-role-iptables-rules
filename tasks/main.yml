@@ -28,7 +28,7 @@
     dest: /etc/iptables/rules.v4
     mode: "644"
   when: rules_v4 is defined
-  notify: Reload iptables rules and restart Docker
+  notify: Reload iptables rules and restart services
 
 - name: Create the rules.v6 file
   template:
@@ -36,7 +36,7 @@
     dest: /etc/iptables/rules.v6
     mode: "644"
   when: rules_v6 is defined
-  notify: Reload iptables rules and restart Docker
+  notify: Reload iptables rules and restart services
 
 - name: Force all notified handlers to run at this point
   meta: flush_handlers

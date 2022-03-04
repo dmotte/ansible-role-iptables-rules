@@ -8,4 +8,4 @@
       vars:
         ansible_become: yes
         rules_v4: "{{ lookup('file', 'rules.v4') }}"
-        restart_docker: yes
+        restart_services: [docker]
