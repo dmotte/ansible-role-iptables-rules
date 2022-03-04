@@ -5,6 +5,8 @@
 
 Ansible role to define **persistent iptables rules**.
 
+In addition, this repository contains also a useful example of an iptables `rules.v4` file.
+
 ## Usage
 
 1. Install this role using the `ansible-galaxy` CLI tool
