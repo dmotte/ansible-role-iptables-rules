@@ -25,11 +25,11 @@ In addition, this repository contains also a useful example of an iptables `rule
 
 ### Role variables
 
-| Variable           | Description                                                                                  |
-| ------------------ | -------------------------------------------------------------------------------------------- |
-| `rules_v4`         | If set, content of the `/etc/iptables/rules.v4` file. If not set, that file won't be created |
-| `rules_v6`         | If set, content of the `/etc/iptables/rules.v6` file. If not set, that file won't be created |
-| `restart_services` | List of services to be restarted after restarting _iptables-persistent_ (default: `[]`)      |
+| Variable           | Description                                                                                   |
+| ------------------ | --------------------------------------------------------------------------------------------- |
+| `rules_v4`         | If set, content for the `/etc/iptables/rules.v4` file. If not set, that file won't be created |
+| `rules_v6`         | If set, content for the `/etc/iptables/rules.v6` file. If not set, that file won't be created |
+| `restart_services` | List of services to be restarted after restarting _iptables-persistent_ (default: `[]`)       |
 
 ## Development
 
