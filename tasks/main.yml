@@ -1,8 +1,9 @@
 ---
-- name: Execute apt update only if the last one is more than 1 hour ago
+- name: Execute apt update if the last one is more than 1 hour ago
   apt:
     update_cache: yes
     cache_valid_time: 3600
+  when: ansible_pkg_mgr == "apt"
 
 - name: Do not save current IPv4 rules to /etc/iptables/rules.v4
   debconf:
@@ -18,8 +19,8 @@
     vtype: boolean
     value: "false"
 
-- name: Ensure the iptables-persistent apt package is installed
-  apt:
+- name: Ensure the iptables-persistent package is installed
+  package:
     name: iptables-persistent
 
 - name: Create the rules.v4 file
