@@ -5,6 +5,6 @@ all:
       ansible_host: myserver.example.com
       ansible_port: 2001
   vars:
-    ansible_user: debian
+    ansible_user: myuser
     #ansible_ssh_pass: mypassword
     #ansible_become_pass: mypassword
