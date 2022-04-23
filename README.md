@@ -33,7 +33,7 @@ In addition, this repository contains also a useful example of an iptables `rule
 
 ## Development
 
-If you want to contribute to this project, you can use the `tests/playbook.yml` file to test the role while editing it.
+If you want to contribute to this project, you can use the `test/playbook.yml` file to test the role while editing it.
 
 First of all, **clone this repository** on your local machine:
 
@@ -41,13 +41,13 @@ First of all, **clone this repository** on your local machine:
 git clone https://github.com/dmotte/ansible-role-iptables-rules.git
 ```
 
-Then place your inventory file (e.g. `hosts.yml`) inside the `tests` folder.
+Then place your inventory file (e.g. `hosts.yml`) inside the `test` folder.
 
-Edit the `vars` section of the `tests/playbook.yml` file to match your scenario. Then put your `rules.v4` and/or `rules.v6` files into the `tests` folder.
+Edit the `vars` section of the `test/playbook.yml` file to match your scenario. Then put your `rules.v4` and/or `rules.v6` files into the `test` folder.
 
 Finally, you can **execute the playbook** against your host:
 
 ```bash
-cd tests/
+cd test/
 ansible-playbook -i hosts.yml playbook.yml
 ```
