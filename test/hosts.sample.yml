@@ -3,7 +3,7 @@ all:
   hosts:
     myserver:
       ansible_host: myserver.example.com
-      ansible_port: 2201
+      ansible_port: 2001
   vars:
     ansible_user: debian
     #ansible_ssh_pass: mypassword
