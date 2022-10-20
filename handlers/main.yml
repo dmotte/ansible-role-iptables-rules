@@ -74,7 +74,7 @@
         flush: yes
       listen: Reload iptables rules and restart services
 
-- name: Restart systemctl services
+- name: Restart services
   block:
     - name: Restart netfilter-persistent service
       service:
