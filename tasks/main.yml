@@ -27,7 +27,7 @@
   template:
     src: rules_v4.j2
     dest: /etc/iptables/rules.v4
-    mode: "644"
+    mode: "0644"
   when: rules_v4 is defined
   notify: Reload iptables rules and restart services
 
@@ -35,7 +35,7 @@
   template:
     src: rules_v6.j2
     dest: /etc/iptables/rules.v6
-    mode: "644"
+    mode: "0644"
   when: rules_v6 is defined
   notify: Reload iptables rules and restart services
 
