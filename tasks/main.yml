@@ -1,30 +1,30 @@
 ---
 - name: Execute apt update if the last one is more than 1 hour ago
-  apt:
+  ansible.builtin.apt:
     update_cache: yes
     cache_valid_time: 3600
   when: ansible_pkg_mgr == "apt"
 
 - name: Do not save current IPv4 rules to /etc/iptables/rules.v4
-  debconf:
+  ansible.builtin.debconf:
     name: iptables-persistent
     question: iptables-persistent/autosave_v4
     vtype: boolean
     value: "false"
 
 - name: Do not save current IPv6 rules to /etc/iptables/rules.v6
-  debconf:
+  ansible.builtin.debconf:
     name: iptables-persistent
     question: iptables-persistent/autosave_v6
     vtype: boolean
     value: "false"
 
 - name: Ensure the iptables-persistent package is installed
-  package:
+  ansible.builtin.package:
     name: iptables-persistent
 
 - name: Create the rules.v4 file
-  template:
+  ansible.builtin.template:
     src: rules_v4.j2
     dest: /etc/iptables/rules.v4
     mode: "0644"
@@ -32,7 +32,7 @@
   notify: Reload iptables rules and restart services
 
 - name: Create the rules.v6 file
-  template:
+  ansible.builtin.template:
     src: rules_v6.j2
     dest: /etc/iptables/rules.v6
     mode: "0644"
@@ -40,4 +40,4 @@
   notify: Reload iptables rules and restart services
 
 - name: Force all notified handlers to run at this point
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers

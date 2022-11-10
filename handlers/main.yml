@@ -2,34 +2,34 @@
 - name: Iptables IPv4 reset
   block:
     - name: Set the iptables policy for the filter:INPUT chain to ACCEPT
-      iptables:
+      ansible.builtin.iptables:
         table: filter
         chain: INPUT
         policy: ACCEPT
       listen: Reload iptables rules and restart services
 
     - name: Set the iptables policy for the filter:FORWARD chain to ACCEPT
-      iptables:
+      ansible.builtin.iptables:
         table: filter
         chain: FORWARD
         policy: ACCEPT
       listen: Reload iptables rules and restart services
 
     - name: Set the iptables policy for the filter:OUTPUT chain to ACCEPT
-      iptables:
+      ansible.builtin.iptables:
         table: filter
         chain: OUTPUT
         policy: ACCEPT
       listen: Reload iptables rules and restart services
 
     - name: Iptables flush nat table
-      iptables:
+      ansible.builtin.iptables:
         table: nat
         flush: yes
       listen: Reload iptables rules and restart services
 
     - name: Iptables flush filter table
-      iptables:
+      ansible.builtin.iptables:
         table: filter
         flush: yes
       listen: Reload iptables rules and restart services
@@ -37,7 +37,7 @@
 - name: Iptables IPv6 reset
   block:
     - name: Set the iptables IPv6 policy for the filter:INPUT chain to ACCEPT
-      iptables:
+      ansible.builtin.iptables:
         ip_version: ipv6
         table: filter
         chain: INPUT
@@ -45,7 +45,7 @@
       listen: Reload iptables rules and restart services
 
     - name: Set the iptables IPv6 policy for the filter:FORWARD chain to ACCEPT
-      iptables:
+      ansible.builtin.iptables:
         ip_version: ipv6
         table: filter
         chain: FORWARD
@@ -53,7 +53,7 @@
       listen: Reload iptables rules and restart services
 
     - name: Set the iptables IPv6 policy for the filter:OUTPUT chain to ACCEPT
-      iptables:
+      ansible.builtin.iptables:
         ip_version: ipv6
         table: filter
         chain: OUTPUT
@@ -61,14 +61,14 @@
       listen: Reload iptables rules and restart services
 
     - name: Iptables flush IPv6 nat table
-      iptables:
+      ansible.builtin.iptables:
         ip_version: ipv6
         table: nat
         flush: yes
       listen: Reload iptables rules and restart services
 
     - name: Iptables flush IPv6 filter table
-      iptables:
+      ansible.builtin.iptables:
         ip_version: ipv6
         table: filter
         flush: yes
@@ -77,13 +77,13 @@
 - name: Restart services
   block:
     - name: Restart netfilter-persistent service
-      service:
+      ansible.builtin.service:
         name: netfilter-persistent
         state: restarted
       listen: Reload iptables rules and restart services
 
     - name: Restart other services
-      service:
+      ansible.builtin.service:
         name: "{{ item }}"
         state: restarted
       loop: "{{ restart_services }}"

@@ -14,7 +14,7 @@ In addition, this repository contains also a useful example of an iptables [`rul
 
    ```yaml
    - name: Include the dmotte.iptables_rules role
-     include_role: { name: dmotte.iptables_rules }
+     ansible.builtin.include_role: { name: dmotte.iptables_rules }
      vars:
        ansible_become: yes
        rules_v4: "{{ lookup('file', 'rules.v4') }}"
