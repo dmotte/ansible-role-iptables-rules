@@ -1,11 +1,12 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: all
+- name: Main play
+  hosts: all
 
   tasks:
     - name: Include the role from the parent directory
       ansible.builtin.include_role: { name: "{{ playbook_dir | dirname }}" }
       vars:
-        ansible_become: yes
+        ansible_become: true
         rules_v4: "{{ lookup('file', 'rules.v4') }}"
         restart_services: [docker]

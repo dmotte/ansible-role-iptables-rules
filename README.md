@@ -16,12 +16,12 @@ In addition, this repository contains also a useful example of an iptables [`rul
    - name: Include the dmotte.iptables_rules role
      ansible.builtin.include_role: { name: dmotte.iptables_rules }
      vars:
-       ansible_become: yes
+       ansible_become: true
        rules_v4: "{{ lookup('file', 'rules.v4') }}"
        restart_services: [docker]
    ```
 
-> **Note**: this role must be run as root (`ansible_become: yes`).
+> **Note**: this role must be run as root (`ansible_become: true`).
 
 ### Role variables
 

@@ -25,13 +25,13 @@
     - name: Iptables flush nat table
       ansible.builtin.iptables:
         table: nat
-        flush: yes
+        flush: true
       listen: Reload iptables rules and restart services
 
     - name: Iptables flush filter table
       ansible.builtin.iptables:
         table: filter
-        flush: yes
+        flush: true
       listen: Reload iptables rules and restart services
 
 - name: Iptables IPv6 reset
@@ -64,14 +64,14 @@
       ansible.builtin.iptables:
         ip_version: ipv6
         table: nat
-        flush: yes
+        flush: true
       listen: Reload iptables rules and restart services
 
     - name: Iptables flush IPv6 filter table
       ansible.builtin.iptables:
         ip_version: ipv6
         table: filter
-        flush: yes
+        flush: true
       listen: Reload iptables rules and restart services
 
 - name: Restart services
