@@ -13,7 +13,7 @@ In addition, this repository contains also a useful example of an iptables [`rul
 2. You can then include it into the `tasks` section of your _Ansible Playbook_ like this:
 
    ```yaml
-   - name: Include the dmotte.iptables_rules role
+   - name: Set persistent iptables rules
      ansible.builtin.include_role: { name: dmotte.iptables_rules }
      vars:
        ansible_become: true
