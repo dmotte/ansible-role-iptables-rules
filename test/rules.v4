@@ -54,8 +54,20 @@
 # Allow all packets for already established connections
 -A DOCKER-USER -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
-# Block (non-established) packets from containers to class-C LANs
+# Allow all packets from a specific physical device
+-A DOCKER-USER -m mac --mac-source 12:34:56:78:9A:BC -j ACCEPT
+
+# Block communication between containers and private networks (RFC1918)
+-A DOCKER-USER -s 10.0.0.0/8 -j DROP
+-A DOCKER-USER -d 10.0.0.0/8 -j DROP
+-A DOCKER-USER -s 172.16.0.0/12 -j DROP
+-A DOCKER-USER -d 172.16.0.0/12 -j DROP
+-A DOCKER-USER -s 192.168.0.0/16 -j DROP
 -A DOCKER-USER -d 192.168.0.0/16 -j DROP
+
+# Block communication between containers and CGNAT addresses
+-A DOCKER-USER -s 100.64.0.0/10 -j DROP
+-A DOCKER-USER -d 100.64.0.0/10 -j DROP
 
 # Default policy: (none) (RETURN to chain FORWARD)
 
