@@ -23,6 +23,8 @@ In addition, this repository contains also a useful example of an iptables [`rul
 
 > **Note**: this role must be run as root (`ansible_become: true`).
 
+> **Note**: this role may not respect trailing newlines at the end of the rules text. In addition, the `lookup('file', ...)` filter performs an `rstrip` on the file contents by default (see [this](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_lookup.html) and [this](https://github.com/ansible/ansible/issues/30829)). In any case there should be no problem, as empty lines are ignored by _iptables-persistent_.
+
 ### Role variables
 
 | Variable           | Description                                                                                   |
