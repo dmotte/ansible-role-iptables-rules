@@ -14,6 +14,9 @@
 # Allow all incoming packets for already established connections
 -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
+# Allow packets to the DHCP client from the eth* network interfaces
+-A INPUT -i eth+ -p udp --dport 68 -j ACCEPT
+
 # Allow incoming SSH from the allowed network interfaces
 -A INPUT -i eth+ -p tcp --dport 22 -j ACCEPT
 -A INPUT -i zt+ -p tcp --dport 22 -j ACCEPT
@@ -33,6 +36,9 @@
 
 # Allow all outgoing packets for already established connections
 -A OUTPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+# Allow packets to DHCP servers for the eth* network interfaces
+-A OUTPUT -o eth+ -p udp --dport 67 -j ACCEPT
 
 # Allow outgoing DNS to the eth* network interfaces
 -A OUTPUT -o eth+ -p tcp --dport 53 -j ACCEPT
