@@ -1,2 +1,3 @@
 ---
+reload_rules_if_changed: true
 restart_services: []

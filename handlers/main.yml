@@ -1,5 +1,6 @@
 ---
 - name: Iptables IPv4 reset
+  when: reload_rules_if_changed
   block:
     - name: Set the iptables policy for the filter:INPUT chain to ACCEPT
       ansible.builtin.iptables:
@@ -35,6 +36,7 @@
       listen: Reload iptables rules and restart services
 
 - name: Iptables IPv6 reset
+  when: reload_rules_if_changed
   block:
     - name: Set the iptables IPv6 policy for the filter:INPUT chain to ACCEPT
       ansible.builtin.iptables:
@@ -74,17 +76,16 @@
         flush: true
       listen: Reload iptables rules and restart services
 
-- name: Restart services
-  block:
-    - name: Restart netfilter-persistent service
-      ansible.builtin.service:
-        name: netfilter-persistent
-        state: restarted
-      listen: Reload iptables rules and restart services
+- name: Restart netfilter-persistent service
+  ansible.builtin.service:
+    name: netfilter-persistent
+    state: restarted
+  listen: Reload iptables rules and restart services
+  when: reload_rules_if_changed
 
-    - name: Restart other services
-      ansible.builtin.service:
-        name: "{{ item }}"
-        state: restarted
-      loop: "{{ restart_services }}"
-      listen: Reload iptables rules and restart services
+- name: Restart other services
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: restarted
+  loop: "{{ restart_services }}"
+  listen: Reload iptables rules and restart services

@@ -9,4 +9,5 @@
       vars:
         ansible_become: true
         rules_v4: "{{ lookup('ansible.builtin.file', 'rules.v4') }}"
+        reload_rules_if_changed: false
         restart_services: [docker]
