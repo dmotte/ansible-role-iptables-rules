@@ -10,16 +10,7 @@ In addition, this repository contains also a useful example of an iptables [`rul
 ## Usage
 
 1. Install this role using the `ansible-galaxy` CLI tool
-2. You can then include it into the `tasks` section of your _Ansible Playbook_ like this:
-
-   ```yaml
-   - name: Set persistent iptables rules
-     ansible.builtin.include_role: { name: dmotte.iptables_rules }
-     vars:
-       ansible_become: true
-       rules_v4: "{{ lookup('ansible.builtin.file', 'rules.v4') }}"
-       restart_services: [docker]
-   ```
+2. You can then include it into the `tasks` section of your _Ansible Playbook_. See [`test/playbook.yml`](test/playbook.yml) for an example of how to do that. Remember to replace the role name with `dmotte.iptables_rules`.
 
 > **Note**: this role must be run as root (`ansible_become: true`).
 
