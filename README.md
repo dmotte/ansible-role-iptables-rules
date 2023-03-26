@@ -18,11 +18,7 @@ In addition, this repository contains also a useful example of an iptables [`rul
 
 ### Role variables
 
-| Variable       | Description                                                                                   |
-| -------------- | --------------------------------------------------------------------------------------------- |
-| `rules_v4`     | If set, content for the `/etc/iptables/rules.v4` file. If not set, that file won't be created |
-| `rules_v6`     | If set, content for the `/etc/iptables/rules.v6` file. If not set, that file won't be created |
-| _...others..._ | See [`defaults/main.yml`](defaults/main.yml)                                                  |
+See [`defaults/main.yml`](defaults/main.yml).
 
 ## Development
 

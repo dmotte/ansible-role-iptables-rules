@@ -1,3 +1,14 @@
 ---
+# Content for the /etc/iptables/rules.v4 file. If set to empty string, that file
+# won't be created
+rules_v4: ""
+
+# Content for the /etc/iptables/rules.v6 file. If set to empty string, that file
+# won't be created
+rules_v6: ""
+
+# Whether or not to reload the iptables rules if changed
 reload_rules_if_changed: true
+
+# List of services that must be restarted if the iptables rules change
 restart_services: []
