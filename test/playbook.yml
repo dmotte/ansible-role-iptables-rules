@@ -6,8 +6,8 @@
   tasks:
     - name: Include the role from the parent directory
       ansible.builtin.include_role: { name: "{{ playbook_dir | dirname }}" }
-      vars:
+      vars: # noqa: var-naming[no-role-prefix]
         ansible_become: true
-        rules_v4: "{{ lookup('ansible.builtin.file', 'rules.v4') }}"
-        reload_rules_if_changed: false
-        restart_services: [docker]
+        iptables_rules_v4: "{{ lookup('ansible.builtin.file', 'rules.v4') }}"
+        iptables_rules_reload_if_changed: false
+        iptables_rules_restart_services: [docker]

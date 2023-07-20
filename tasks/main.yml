@@ -28,7 +28,7 @@
     src: rules_v4.j2
     dest: /etc/iptables/rules.v4
     mode: "0644"
-  when: rules_v4 != ""
+  when: iptables_rules_v4 != ""
   notify: Reload iptables rules and restart services
 
 - name: Create the rules.v6 file
@@ -36,7 +36,7 @@
     src: rules_v6.j2
     dest: /etc/iptables/rules.v6
     mode: "0644"
-  when: rules_v6 != ""
+  when: iptables_rules_v6 != ""
   notify: Reload iptables rules and restart services
 
 - name: Force all notified handlers to run at this point
