@@ -113,6 +113,6 @@
 -A DOCKER-USER -d 240.0.0.0/4 -j DROP
 -A DOCKER-USER -d 255.255.255.255/32 -j DROP
 
-# Default policy: (none) (RETURN to chain FORWARD)
+# Default policy: (none) (RETURN to parent chain)
 
 COMMIT
