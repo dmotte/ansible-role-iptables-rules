@@ -8,6 +8,9 @@
       ansible.builtin.include_role: { name: "{{ playbook_dir | dirname }}" }
       vars: # noqa: var-naming[no-role-prefix]
         ansible_become: true
-        iptables_rules_v4: "{{ lookup('ansible.builtin.file', 'rules.v4') }}"
+        iptables_rules_v4: >
+          {{ lookup('ansible.builtin.file', 'rules.v4') |
+          regex_replace('^#.*$', '', multiline=True) |
+          regex_replace('(\r?\n)+', '\n') }}
         iptables_rules_reload_if_changed: false
         iptables_rules_restart_services: [docker]
