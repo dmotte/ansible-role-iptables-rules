@@ -3,6 +3,12 @@
 [![GitHub latest release](https://img.shields.io/github/v/release/dmotte/ansible-role-iptables-rules?logo=github&style=flat-square)](https://github.com/dmotte/ansible-role-iptables-rules/actions)
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-dmotte.iptables__rules-blueviolet?logo=ansible&style=flat-square)](https://galaxy.ansible.com/dmotte/iptables_rules)
 
+## :warning: Warning: this project is **no longer maintained** :warning:
+
+I decided to convert the Ansible code [to Bash](https://github.com/dmotte/misc/tree/main/scripts) for simplicity.
+
+---
+
 Ansible role to define **persistent iptables rules**.
 
 In addition, this repository contains also a useful example of an iptables [`rules.v4`](test/rules.v4) file.
